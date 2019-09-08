@@ -1,0 +1,5 @@
+  node {
+   stage ('Run JMeter Test')
+   bat 'E:/Exp_Serv/apache-jmeter-5.1.1/bin/jmeter.bat -Jjmeter.save.saveservice.output_format=xml -Jjmeter.save.saveservice.output_format=csv -Jjmeter.save.saveservice.response_data=true -Jjmeter.save.saveservice.samplerData=true -Jjmeter.save.saveservice.requestHeaders=true -Jjmeter.save.saveservice.url=true -Jjmeter.save.saveservice.responseHeaders=true -n -t E:/Exp_Serv/Lightweighthttp3399.jmx -Jusers=3 -l E:/Exp_Serv/jmeterresult/2121.jtl' 
+   step([$class: 'ArtifactArchiver', artifacts: '**/*.jtl, **/jmeter.log'])
+}
